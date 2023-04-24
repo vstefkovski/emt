@@ -44,8 +44,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Optional<Book> create(BookDto bookDto) {
         Author author = this.authorRepository.findById(bookDto.getAuthor()).orElseThrow(AuthorNotFoundException::new);
-
-        return Optional.of(this.bookRepository.save(new Book(bookDto.getName(), bookDto.getCategory(), author, bookDto.getAvaliableCopies())));
+        return Optional.of(this.bookRepository.save(new Book(bookDto.getName(), bookDto.getCategory(), author, bookDto.getAvailableCopies())));
     }
 
     @Override
@@ -61,7 +60,7 @@ public class BookServiceImpl implements BookService {
 
         book.setAuthor(author);
 
-        book.setAvailableCopies(bookDto.getAvaliableCopies());
+        book.setAvailableCopies(bookDto.getAvailableCopies());
 
         return Optional.of(this.bookRepository.save(book));
     }
